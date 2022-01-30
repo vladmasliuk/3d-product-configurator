@@ -1,36 +1,29 @@
-import React, { Suspense, useRef } from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { OrbitControls, useGLTF } from "@react-three/drei"
+import React from "react";
 import './App.css';
 
-const Product = (props) =>{
-    const group = useRef();
-    const { nodes, materials } = useGLTF('product/shoe.gltf');
-    return (
-      <group ref={group} {...props} dispose={null}>
-        <mesh geometry={nodes.shoe.geometry} material={materials.laces} />
-        <mesh geometry={nodes.shoe_1.geometry} material={materials.mesh} />
-        <mesh geometry={nodes.shoe_2.geometry} material={materials.caps} />
-        <mesh geometry={nodes.shoe_3.geometry} material={materials.inner} />
-        <mesh geometry={nodes.shoe_4.geometry} material={materials.sole} />
-        <mesh geometry={nodes.shoe_5.geometry} material={materials.stripes} />
-        <mesh geometry={nodes.shoe_6.geometry} material={materials.band} />
-        <mesh geometry={nodes.shoe_7.geometry} material={materials.patch} />
-      </group>
-  )
-}
+// components
+import ProductPage from './Pages/ProductPage';
+
+// lib
+import styled from 'styled-components'
 
 function App() {
   return (
-    <Canvas>
-      <ambientLight intensity={0.7} />
-      <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
-      <Suspense fallback={null}>
-        <Product/>
-      </Suspense>
-      <OrbitControls/>
-    </Canvas>
+    <PageWrap>
+      <ProductPage/>
+    </PageWrap>
   );
 }
+
+const PageWrap = styled.div`
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  outline: none;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgb(170, 170, 170));
+`
 
 export default App;
