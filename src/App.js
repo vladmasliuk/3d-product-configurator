@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 
 // components
-import ProductPage from './Pages/ProductPage';
+import ProductPage from './pages/ProductPage';
 
 // lib
 import styled from 'styled-components'
